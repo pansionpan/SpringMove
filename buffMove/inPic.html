@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/pansionmove.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			html,
+			body,
+			div,
+			span,
+			applet,
+			object,
+			iframe,
+			h1,
+			h2,
+			h3,
+			h4,
+			h5,
+			h6,
+			p,
+			blockquote,
+			pre,
+			a,
+			abbr,
+			acronym,
+			address,
+			big,
+			cite,
+			code,
+			del,
+			dfn,
+			em,
+			img,
+			ins,
+			kbd,
+			q,
+			s,
+			samp,
+			small,
+			strike,
+			strong,
+			sub,
+			sup,
+			tt,
+			var,
+			b,
+			u,
+			i,
+			center,
+			dl,
+			dt,
+			dd,
+			ol,
+			ul,
+			li,
+			fieldset,
+			form,
+			label,
+			legend,
+			table,
+			caption,
+			tbody,
+			tfoot,
+			thead,
+			tr,
+			th,
+			td,
+			article,
+			aside,
+			canvas,
+			details,
+			embed,
+			figure,
+			figcaption,
+			footer,
+			header,
+			hgroup,
+			menu,
+			nav,
+			output,
+			ruby,
+			section,
+			summary,
+			time,
+			mark,
+			audio,
+			video {
+				margin: 0;
+				padding: 0;
+				border: 0;
+				font-size: 100%;
+				font: inherit;
+				vertical-align: baseline
+			}
+			
+			article,
+			aside,
+			details,
+			figcaption,
+			figure,
+			footer,
+			header,
+			hgroup,
+			menu,
+			nav,
+			section {
+				display: block
+			}
+			
+			body {
+				line-height: 1
+			}
+			
+			ol,
+			ul {
+				list-style: none
+			}
+			
+			blockquote,
+			q {
+				quotes: none
+			}
+			
+			blockquote:before,
+			blockquote:after,
+			q:before,
+			q:after {
+				content: '';
+				content: none
+			}
+			
+			table {
+				border-collapse: collapse;
+				border-spacing: 0
+			}
+			
+			.area {
+				width: 100%;
+				height: 150px;
+			}
+			
+			.area ul {
+				position: relative;
+				width: 900px;
+				height: 100px;
+				margin: 50px auto 0;
+				text-align: center;
+				border: 1px solid crimson;
+				border-radius: 5px;
+				box-shadow: 0 0 10px crimson;
+			}
+			
+			.area ul li {
+				width: 180px;
+				line-height: 100px;
+				float: left;
+				font-size: 24px;
+				cursor: pointer;
+			}
+			
+			.nav {
+				width: 180px;
+				height: 100px;
+				position: absolute;
+				left: 0;
+				background: rgba(0, 0, 0, 0.5);
+			}
+			.txtarea{
+				text-align: center;
+			}
+			.txtarea p{
+				width:800px;
+				margin: 0 auto;
+				font-size: 20px;
+				color:#0cc;
+				font-weight: bold;
+				line-height: 1.5em;
+			}
+			.txtarea .kj{
+				width: 150px;
+				margin: 0 auto;
+				font-size: 20px;
+				color:crimson;
+				font-weight: bold;
+				text-align: left;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="area">
+			<ul id="movearea">
+				<li class="nav" id="nav"></li>
+				<li id="li_area1">首页</li>
+				<li id="li_area2">历史</li>
+				<li id="li_area3">论坛</li>
+				<li id="li_area4">登录</li>
+				<li id="li_area5">关于</li>
+			</ul>
+		</div>
+		<div class="txtarea">
+			<p>
+			先生/女士  您好:<br />
+			此框架是我上学期间结合相关资料，自己编创的一个简易版本弹性运动框架。<br />
+			目前功能尚未完备，但可以基本实现目前市面上的弹性运动或者其他运动功能。<br />
+			此框架目前阶段可以完美兼容火狐、谷歌浏览器。<br />
+			框架的基本语法是:<br />
+			</p>
+				<div class="kj">
+					panmove({<br />
+					obj:运动对象名,<br />
+					type:'移动方式(暂时写出3种)',<br />
+					target:移动距离<br />
+					})<br />
+				</div>	
+			<p>
+			其中panmove是框架调用固定名称，形参用json储存。<br />
+			obj为运动目标的id名<br />
+			type为运动方式。目前版本中有:  1.匀速运动(linear) 2.缓冲运动(ease) 3.弹性运动(buffer)<br />
+			target为目标将要运动的距离<br />
+			此外还有许多小参数，例如弹性运动系数buff，运动时间tm等<br />
+			此框架开源在我的GitHub个人主页中，各bug仍在调试中。
+			</p>
+		</div>
+		<script src="js/jquery-2.1.4.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+	<script type="text/javascript">
+		li_area1.onmousemove = function(e) {
+			panmove({
+				obj: nav,
+				type: 'buffer',
+				tm: 20,
+				buff: 0.3,
+				target: 0.1
+			})
+		}
+
+		li_area2.onmousemove = function(e) {
+			panmove({
+				obj: nav,
+				type: 'buffer',
+				tm: 20,
+				buff: 0.3,
+				target: 180
+			})
+		}
+
+		li_area3.onmousemove = function(e) {
+			panmove({
+				obj: nav,
+				type: 'buffer',
+				tm: 20,
+				buff: 0.3,
+				target: 360
+			})
+		}
+
+		li_area4.onmousemove = function(e) {
+			panmove({
+				obj: nav,
+				type: 'buffer',
+				tm: 20,
+				buff: 0.3,
+				target: 540
+			})
+		}
+
+		li_area5.onmousemove = function() {
+			panmove({
+				obj: nav,
+				type: 'buffer',
+				tm: 20,
+				buff: 0.3,
+				target: 720
+			})
+		}
+
+		$('.area').on('mouseleave', function() {
+			$('.nav').animate({
+				left: 0
+			})
+		})
+	</script>
+
+</html>
